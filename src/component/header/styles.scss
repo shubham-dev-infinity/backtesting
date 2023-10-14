@@ -1,5 +1,5 @@
 :root {
-	--main_color: #88c450;
+	--main_color: #1477EB;
 	// --font-inter: font-: Inter-Regular;
 	// --font-cash-display: ClashDisplay-Regular;
 	// --font-cash-display-bold: ClashDisplay-Bold;
@@ -30,9 +30,11 @@
 	.navbar-nav {
 		.nav-item {
 			.nav-link {
-				color: #212529;
+				color: rgba(255, 255, 255, 0.50);
 				&.active {
-					color: #2937f0;
+					color: #fff;
+                    border-bottom: 1px solid #FFF;
+                    padding-bottom: 0 !important;
 				}
 			}
 		}
@@ -40,19 +42,9 @@
 }
 #mainNav .navbar-brand:hover,
 #mainNav .navbar-brand:active {
-	color: #2937f0;
+	color: #fff;
 }
-.login_btn {
-	border: 1px solid var(--main_color) !important;
-	padding: 10px 20px !important;
-	font-size: 14px !important;
-	font-weight: 500 !important;
-	color: var(--main_color) !important;
-	&:hover {
-		color: #fff !important;
-		background-color: var(--main_color) !important;
-	}
-}
+
 .app_btn {
 	padding: 10px 20px !important;
 	font-size: 14px !important;
@@ -74,8 +66,8 @@
 		box-shadow: 0 0 0 0;
 	}
 }
-.active {
-	color: #88c450 !important;
+.navlink-active {
+	color: #fff !important;
 }
 .sidebar-toggler {
 	line-height: 1;

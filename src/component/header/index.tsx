@@ -1,10 +1,26 @@
 import { Button } from '../button';
 import './styles.scss'; // Import css modules stylesheet as styles
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
-    const menulist = [{
-
-    }]
+    const menuList = [
+        {
+            menu_link: "/",
+            title: "About Backtesting"
+        },
+        {
+            menu_link: "/features",
+            title: "Features"
+        },
+        {
+            menu_link: "/plan",
+            title: "Subscription Plan"
+        },
+        {
+            menu_link: "/contactus",
+            title: "Contact Us"
+        },
+    ]
 
     return (
         <>
@@ -28,15 +44,24 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                            <li className="nav-item">
-                                home
-                            </li>
+                            {menuList?.map((item) => {
+                                return (
+                                    <li className="nav-item">
+                                        <NavLink
+                                            className="nav-link me-lg-2"
+                                            to={item?.menu_link}
+                                        >
+                                            {item?.title}
+                                        </NavLink>
+                                    </li>
+                                );
+                            })}
                         </ul>
                         <Button children={'Log In'} className='me-2' />
                         <Button children={'Sign Up'} className='ms-2' />
                     </div>
                 </div>
-            </nav>
+            </nav >
         </>
     )
 }
