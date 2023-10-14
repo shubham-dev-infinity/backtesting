@@ -1,0 +1,112 @@
+:root {
+	--main_color: #88c450;
+	// --font-inter: font-: Inter-Regular;
+	// --font-cash-display: ClashDisplay-Regular;
+	// --font-cash-display-bold: ClashDisplay-Bold;
+}
+#mainNav {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	background: #15083A;;
+	.navbar-brand {
+		font-family: "Kanit",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+	}
+	.navbar-toggler {
+		font-size: 1.875rem;
+		padding: 0.5rem 0.8rem;
+		color: #212529;
+	}
+	.navbar-nav {
+		.nav-item {
+			.nav-link {
+				color: #212529;
+				&.active {
+					color: #2937f0;
+				}
+			}
+		}
+	}
+}
+#mainNav .navbar-brand:hover,
+#mainNav .navbar-brand:active {
+	color: #2937f0;
+}
+.login_btn {
+	border: 1px solid var(--main_color) !important;
+	padding: 10px 20px !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+	color: var(--main_color) !important;
+	&:hover {
+		color: #fff !important;
+		background-color: var(--main_color) !important;
+	}
+}
+.app_btn {
+	padding: 10px 20px !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+	color: #fff !important;
+	background-color: var(--main_color) !important;
+}
+.start_btn {
+	padding: 18px 88px !important;
+	color: #fff !important;
+	background-color: var(--main_color) !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+}
+.navbar-toggler {
+	&:focus {
+		text-decoration: none;
+		outline: 0;
+		box-shadow: 0 0 0 0;
+	}
+}
+.active {
+	color: #88c450 !important;
+}
+.sidebar-toggler {
+	line-height: 1;
+	color: var(--bs-navbar-color);
+	background-color: transparent;
+	border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
+	border-radius: var(--bs-navbar-toggler-border-radius);
+	transition: var(--bs-navbar-toggler-transition);
+	font-size: 1.875rem;
+	padding: 0.5rem 0.8rem;
+	color: #212529;
+	margin-left: 20px;
+}
+
+
+
+
+.nav-fill > .nav-link,
+.nav-fill .nav-item {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.nav-justified > .nav-link,
+.nav-justified .nav-item {
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nav-fill .nav-item .nav-link,
+.nav-justified .nav-item .nav-link {
+  width: 100%;
+}

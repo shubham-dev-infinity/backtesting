@@ -1,12 +1,16 @@
-import './App.scss';
-// import './App.css';
-
-import Header from "./component/header";
+import React from 'react';
+import { PublicRoute } from './router/PublicRoute';
+import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { PrivateRoute } from './router/PrivateRoute';
 
 function App() {
+
   return (
     <>
-      <Header />
+      <Router>
+        <PublicRoute />
+      </Router >
+      {/* {!token ? <PublicRoute /> : <PrivateRoute />} */}
     </>
   );
 }
