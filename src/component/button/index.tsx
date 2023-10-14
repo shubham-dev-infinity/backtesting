@@ -3,7 +3,7 @@ import React from 'react'
 
 type TButton = {
     className?: string;
-    children: React.ReactElement
+    children: React.ReactNode
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const Button = ({ className, children, ...props }: TButton) => {
