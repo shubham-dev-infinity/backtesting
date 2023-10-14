@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import React from 'react'
+import "./styles.scss"
 
 type TButton = {
     className?: string;
@@ -9,7 +10,7 @@ type TButton = {
 export const Button = ({ className, children, ...props }: TButton) => {
     return (
         <>
-            <button className={cn(className, '')} {...props}>
+            <button className={cn(className, 'cm_btn')} {...props}>
                 {children}</button>
         </>)
 }

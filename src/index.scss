@@ -1,8 +1,13 @@
+@font-face {
+  font-family: Poppins;
+  src: url(./assets/font/Poppins-Regular.ttf);
+}
+:root {
+  --font-poppins:Poppins
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-poppins) ;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +15,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  --assent-primary:#1477EB;
+  --font-family: var(--font-poppins) 
 }
