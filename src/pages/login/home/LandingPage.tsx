@@ -1,6 +1,7 @@
 import React from 'react'
 import "./home.scss"
 import { Button } from '../../../component/button'
+import feature1 from "../../../assets/img/feature1.png"
 
 
 function LandingPage() {
@@ -84,7 +85,7 @@ function LandingPage() {
                     </div>
                     <div className='row g-5'>
                         <div className='col-lg-6'>
-                            <img src="" />
+                            <img src={feature1} />
                         </div>
                         <div className='col-lg-6'>
                             <h5 className="featureTxt">The app offers a vast collection of safety talks
