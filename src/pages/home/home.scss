@@ -1,5 +1,5 @@
 .home_banner_wrpper {
-    margin-top: 6rem;
+    margin-top: 1rem;
 
     .banner_wrapper {
         background-image: url("../../assets/img/banner_bg.png");
@@ -9,8 +9,9 @@
         background-size: cover;
         background-position: center;
         padding-bottom: 50px;
-
-
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .banner_head {
@@ -44,12 +45,6 @@
     left: 90%;
 
 }
-
-.content_mt {
-    padding-top: 70px;
-}
-
-// 
 
 .card_box {
     border-radius: 30px;

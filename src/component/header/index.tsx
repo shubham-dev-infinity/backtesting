@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { Button } from '../button';
 import './styles.scss'; // Import css modules stylesheet as styles
 import { NavLink } from "react-router-dom";
-import { useSelector } from 'react-redux';
 import { useAppSelector } from '../../custome-hooks/redux';
 
 const Header = () => {

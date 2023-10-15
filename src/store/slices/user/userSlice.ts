@@ -32,7 +32,15 @@ export const userSlice = createSlice({
     reducers: {
         initializeUser: (state, action: PayloadAction<{ data: { userBasic: TUserBasic, token: string } }>) => {
             const { userBasic, token } = action.payload.data
-            state = { ...userBasic, isLoggedIn: true, token: token }
+            const { _id, name, email, phoneNumber, countryCode, isBlock } = userBasic
+            state._id = _id;
+            state.name = name
+            state.email = email;
+            state.phoneNumber = phoneNumber;
+            state.countryCode = countryCode;
+            state.isBlock = isBlock;
+            state.isLoggedIn = true;
+            state.token = token
         },
     }
 })

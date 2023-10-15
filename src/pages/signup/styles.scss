@@ -1,11 +1,13 @@
 .auth_Active {
     background-color: var(--bg-blue-primary);
     border: 1px solid var(--bg-blue-primary);
+    font-weight: normal;
     // background-color: red;
 }
 
 .auth_Default_Btn {
     border: 1px solid var(--bg-blue-primary);
+    font-weight: normal;
     color: var(--text-light-color) !important;
 }
 
