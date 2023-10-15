@@ -55,9 +55,9 @@ const LogIn = () => {
                 <div className='w-1/3 login'>
                     <div className="card_box">
                         <h3 className="card_title">Login</h3>
-                        <div className="login_signup">
-                            <Button className="primaryBtn">Login</Button>
-                            <Button className="signup_btn">Signup</Button>
+                        <div className='w-full text-center mb-4 flex'>
+                            <Button className='auth_Default_Btn flex-1'><Link to='/signup'>Signup</Link> </Button>
+                            <Button className='auth_Active flex-1'>Login</Button>
                         </div>
                         <div className="input_text">
                             <div className="e_mail">

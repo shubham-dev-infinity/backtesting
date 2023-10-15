@@ -75,7 +75,7 @@ const SignUp = () => {
     return (
         <>
             <section className='login_Wrapper'>
-                <div className='w-1/3 px-16 py-8 login'>
+                <div className='w-1/2 lg:w-1/3  lg:px-16 lg:py-8 login'>
                     <div>
                         <h1 className='text-center text-3xl mb-4 font-bold'>Sign Up</h1>
                         <div className='w-full text-center mb-4 flex'>

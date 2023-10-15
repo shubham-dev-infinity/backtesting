@@ -10,7 +10,7 @@ type TButton = {
 export const Button = ({ className, children, ...props }: TButton) => {
     return (
         <>
-            <button className={cn(className, 'cm_btn', 'font-bold py-2 px-12', className)} {...props}>
+            <button className={cn(className, 'cm_btn', 'font-bold py-3 px-6 lg:py-2 lg:px-4 md:text-sm', className)} {...props}>
                 {children}</button>
         </>)
 }
