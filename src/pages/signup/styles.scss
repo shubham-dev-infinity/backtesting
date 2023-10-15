@@ -21,3 +21,24 @@
     line-height: 30px;
     margin-top: 1rem;
 }
+
+.login {
+    width: 33% !important;
+    padding: 1rem 3rem;
+
+    @media screen and (max-width:1400px) {
+        width: 45% !important;
+        padding: 1rem 1rem;
+    }
+
+    @media screen and (max-width:1024px) {
+        width: 60% !important;
+        padding: 1rem 2rem;
+    }
+
+    @media screen and (max-width:768px) {
+        width: 93% !important;
+        padding: 1rem 1rem;
+    }
+
+}

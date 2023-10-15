@@ -53,7 +53,7 @@ const LogIn = () => {
         <>
             <section className='login_Wrapper'>
                 <div className='w-1/3 login'>
-                    <div className="card_box">
+                    <div className=''>
                         <h3 className="card_title">Login</h3>
                         <div className='w-full text-center mb-4 flex'>
                             <Button className='auth_Default_Btn flex-1'><Link to='/signup'>Signup</Link> </Button>
