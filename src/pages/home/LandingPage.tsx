@@ -6,10 +6,13 @@ import { useState } from "react"
 import post from "../../HTTP/post"
 import { toast } from "react-toastify"
 import { initializeUser } from "../../store/slices/user/userSlice"
+import subscriptionData from "./components/subscription-plan/data"
+import SubscriptionPlan from "./components/subscription-plan"
 
 
 function LandingPage() {
     const { isLoggedIn } = useAppSelector((state) => state.user)
+    const [activeSub, setActiveSub] = useState(-1)
     const [formFields, setFormFields] = useState({
         userId: '',
         password: ''
@@ -145,6 +148,18 @@ function LandingPage() {
                             <img src='/assets/img/feature2.png' alt='star' />
                         </div>
                         <div className='col-lg-6'></div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div className="container">
+                    <div className="feature_line">
+                        <h2 className="feature_txt">Subscription Plans</h2>
+                    </div>
+                    <div className="grid grid-cols-4 gap-4">
+                        {
+                            subscriptionData.map((sub, index) => <SubscriptionPlan key={index} index={index} activeIndex={activeSub} duration={sub.duration} features={sub.features} price={sub.price} priceLabel={sub.priceLabel} selectSub={setActiveSub} />)
+                        }
                     </div>
                 </div>
             </section>

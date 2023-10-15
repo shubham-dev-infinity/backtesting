@@ -79,7 +79,7 @@ const SignUp = () => {
                     <div>
                         <h1 className='text-center text-3xl mb-4 font-bold'>Sign Up</h1>
                         <div className='w-full text-center mb-4 flex'>
-                            <Button className='auth_Default_Btn flex-1'>Login</Button>
+                            <Button className='auth_Default_Btn flex-1'><Link to={'/login'}>Login</Link> </Button>
                             <Button className='auth_Active flex-1'>SignUp</Button>
                         </div>
                         <div>
@@ -100,14 +100,16 @@ const SignUp = () => {
 
 
                                 <label htmlFor="signup_Number" className='form_Labels'>Phone No:</label>
-                                <PhoneInput
-                                    country={'us'}
-                                    value={phoneNumber}
-                                    onChange={(value, country) => {
-                                        setPhoneNumber(value);
-                                        setCountryCode((country as CountryData).dialCode);
-                                    }}
-                                />
+                                <div className='phone_Input_Wrapper'>
+                                    <PhoneInput
+                                        country={'us'}
+                                        value={phoneNumber}
+                                        onChange={(value, country) => {
+                                            setPhoneNumber(value);
+                                            setCountryCode((country as CountryData).dialCode);
+                                        }}
+                                    />
+                                </div>
 
 
                                 {!recievedOTP && <>

@@ -12,6 +12,7 @@
 :root {
   --font-poppins: Poppins;
   --bg-blue-primary: #1477EB;
+  --text-blue-primary: #1477EB;
   --text-light-color: #00000080;
 }
 
@@ -34,4 +35,25 @@ code {
 
 .text_Light {
   color: var(--text-light-color);
+}
+
+.phone_Input_Wrapper {
+  .special-label {
+    display: none;
+  }
+
+  input {
+    width: 100% !important;
+    outline: none !important;
+    // padding: 1rem !important;
+    border-radius: .6125rem !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20) !important;
+
+    &:focus {
+      outline: 2px solid black !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+  }
 }

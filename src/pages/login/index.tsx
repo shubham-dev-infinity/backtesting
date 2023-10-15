@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2';
 import post from '../../HTTP/post';
 import { useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../custome-hooks/redux';
+import { initializeUser } from '../../store/slices/user/userSlice';
+import { toast } from 'react-toastify';
 
 type Inputs = {
     name: string;
@@ -16,63 +19,61 @@ type Inputs = {
 };
 
 const LogIn = () => {
-    const [recievedOTP, setRecievedOTP] = useState<null | string>(null)
-    const { register, handleSubmit, formState: { errors }, control } = useForm<Inputs>();
-    const onSubmit = async (data: FieldValues) => {
+    const { isLoggedIn } = useAppSelector((state) => state.user)
+    const [formFields, setFormFields] = useState({
+        userId: '',
+        password: ''
+    })
+    const dispatch = useAppDispatch()
 
-        const response: any = await post('/login', data)
-        const jsonResponse = response.json();
-        console.log(jsonResponse);
+    const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target
+        setFormFields((prev) => ({ ...prev, [name]: value }))
+    }
 
-    };
+    const handleLogin = async () => {
+        const body = formFields
+        try {
+            const response: any = await post('user/login', body)
+            console.log(response)
 
-    const handleVarifyOTP = () => {
+            if (response.status === 200) {
+                const { _id, name, email, phoneNumber, countryCode, isBlock } = response.data.userData
+                const user = { _id, name, email, phoneNumber, countryCode, isBlock }
+                localStorage.setItem('backtest_Toke', response.data.token);
+                dispatch(initializeUser({ data: { userBasic: user, token: response.data.token }, }))
+                toast.success(response.message)
+            }
 
+        } catch (error) {
+            toast.error('Credential Not Matching')
+        }
     }
     return (
         <>
             <section className='login_Wrapper'>
-                <div className='w-50 login'>
-                    <div>
-                        <h1>Log In</h1>
-                        <div>
-                            <Button className='bg-transparent text-blue-600 rounded-lg 123'>Login</Button>
-                            <Button>Signup</Button>
+                <div className='w-1/3 login'>
+                    <div className="card_box">
+                        <h3 className="card_title">Login</h3>
+                        <div className="login_signup">
+                            <Button className="primaryBtn">Login</Button>
+                            <Button className="signup_btn">Signup</Button>
                         </div>
-                        <div>
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <label htmlFor="">Name</label>
-                                <input type='text'  {...register('name', {
-                                    required: true
-                                })} />
-                                <label htmlFor="">Phone No:</label>
-                                <Controller
-                                    control={control}
-                                    name="phone"
-                                    defaultValue=""
-                                    rules={{ required: true }}
-                                    render={({ field }) => (
-                                        <PhoneInput
-                                            {...field}
-                                            country={'us'}
-                                        />
-                                    )}
-                                />
-                                {!!recievedOTP && <>
-                                    <label htmlFor="">Enter OTP</label>
-                                    <input type='text'  {...register('otp', {
-                                        required: true
-                                    })} />
-                                </>
-                                }
-
-                                {!recievedOTP && <Button type='submit' className='bg-black'>Get OTP</Button>}
-                                {!!recievedOTP && <Button type='submit'>Varify OTP</Button>}
-                                {!!recievedOTP && <p>Resend OTP</p>}
-                                <p>or</p>
-                                <p>Don't Have Account?<Link to={''}>Sign Up</Link></p>
-                                <input type='submit' />
-                            </form>
+                        <div className="input_text">
+                            <div className="e_mail">
+                                <h5>Email</h5>
+                                <input className='inputClass' type="email" placeholder="Enter your Email here" name="userId" value={formFields.userId} onChange={handleFormChange} />
+                            </div>
+                            <div className="e_mail">
+                                <h5>Password</h5>
+                                <input className='inputClass' type="password" placeholder="Enter your Email here" name="password" value={formFields.password} onChange={handleFormChange} />
+                            </div>
+                            <p className="forgot_text"><Link to='/reset-password'>Forgot Password?</Link> </p>
+                        </div>
+                        <div className="main_btn">
+                            <Button className="btn_wrap" children={"Login"} onClick={handleLogin} />
+                            <p className="btn_wrap_text">Or</p>
+                            <p className="btn_wrap_text">Don’t have an account? <span className="signup_mark"><Link to={'/signup'}> SignUp</Link></span></p>
                         </div>
                     </div>
                 </div>

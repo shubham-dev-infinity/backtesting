@@ -70,14 +70,16 @@ const Forgotpassword = () => {
                                 <form onSubmit={handleSubmit(onSubmit)}>
 
                                     <label htmlFor="signup_Number" className='form_Labels'>Phone No:</label>
-                                    <PhoneInput
-                                        country={'us'}
-                                        value={phoneNumber}
-                                        onChange={(value, country) => {
-                                            setPhoneNumber(value);
-                                            setCountryCode((country as CountryData).dialCode);
-                                        }}
-                                    />
+                                    <div className='phone_Input_Wrapper'>
+                                        <PhoneInput
+                                            country={'us'}
+                                            value={phoneNumber}
+                                            onChange={(value, country) => {
+                                                setPhoneNumber(value);
+                                                setCountryCode((country as CountryData).dialCode);
+                                            }}
+                                        />
+                                    </div>
 
                                     {!!recievedOTP && <>
 

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import Header from '../component/header';
 import { Navigate, Route } from 'react-router';
+import Footer from '../component/footer';
 
 interface RouteWrapperProps {
     is_Blank: boolean;
@@ -23,6 +24,7 @@ const RouteWrapper: React.FC<RouteWrapperProps> = ({ is_Blank, is_Private, child
         <>
             {!is_Blank && <Header />}
             {children}
+            {!is_Blank && <Footer />}
         </>
     );
 }
