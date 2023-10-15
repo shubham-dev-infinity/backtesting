@@ -1,7 +1,5 @@
-import React from 'react'
 import "./home.scss"
-import { Button } from '../../../component/button'
-import feature1 from "../../../assets/img/feature1.png"
+import { Button } from '../../component/button'
 
 
 function LandingPage() {
@@ -12,10 +10,11 @@ function LandingPage() {
                     <div className='container'>
                         <div className='content_mt'>
                             <div className='row align-items-center'>
-                                <div className='col-lg-7 position-relative'>
-                                    <img src='../../../assets/img/starImg.png' alt='star' className='starImg' />
-                                    <h1 className='banner_head'>Let’s Go To your <br />
-                                        <span>Backtesting</span> Here</h1>
+                                <div className='col-lg-7'>
+                                    <h1 className='banner_head position-relative inline'>Let’s Go To your <br />
+                                        <span>Backtesting</span> Here
+                                        <img src='/assets/img/starimg.png' alt='star' className='starImg' />
+                                    </h1>
                                     <h3 className='banner_grayTxt'>(Banknifty & Nifty) </h3>
                                 </div>
                                 <div className='col-lg-5'>
@@ -85,7 +84,7 @@ function LandingPage() {
                     </div>
                     <div className='row g-5'>
                         <div className='col-lg-6'>
-                            <img src={feature1} />
+                            <img src='/assets/img/feature1.png' alt='star' />
                         </div>
                         <div className='col-lg-6'>
                             <h5 className="featureTxt">The app offers a vast collection of safety talks
@@ -104,6 +103,9 @@ function LandingPage() {
                                 topics and materials for their safety briefings.
                                 This app provides a comprehensive solution for
                                 promoting safety awareness and compliance.</h5>
+                        </div>
+                        <div className='col-lg-6'>
+                            <img src='/assets/img/feature2.png' alt='star' />
                         </div>
                         <div className='col-lg-6'></div>
                     </div>

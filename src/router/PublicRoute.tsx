@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./index";
 import RouteWrapper from "./RouteWrapper";
-import React from "react";
 
 export const PublicRoute = () => {
   console.log('ROUTES', ROUTES);
@@ -9,11 +8,11 @@ export const PublicRoute = () => {
   return (
     <>
       <Routes>
-        {ROUTES?.filter((item) => item?.publicRoute === true).map((item, i) => {
+        {ROUTES.map((item, i) => {
           return (
             <Route key={i}
               path={item.path}
-              element={<RouteWrapper is_blank={item?.is_blank}>{item.element}</RouteWrapper>}
+              element={<RouteWrapper is_Blank={item?.is_blank} is_Private={!item.publicRoute}>{item.element}</RouteWrapper>}
             />
           );
         })}

@@ -1,13 +1,23 @@
+@import 'react-phone-input-2/lib/material.css';
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: Poppins;
   src: url(./assets/font/Poppins-Regular.ttf);
 }
+
 :root {
-  --font-poppins:Poppins
+  --font-poppins: Poppins;
+  --bg-blue-primary: #1477EB;
+  --text-light-color: #00000080;
 }
+
 body {
   margin: 0;
-  font-family: var(--font-poppins) ;
+  font-family: var(--font-poppins);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,6 +28,10 @@ code {
 }
 
 :root {
-  --assent-primary:#1477EB;
-  --font-family: var(--font-poppins) 
+  --assent-primary: #1477EB;
+  --font-family: var(--font-poppins)
+}
+
+.text_Light {
+  color: var(--text-light-color);
 }

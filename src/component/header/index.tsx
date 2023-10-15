@@ -1,8 +1,13 @@
+import { Link } from 'react-router-dom';
 import { Button } from '../button';
 import './styles.scss'; // Import css modules stylesheet as styles
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../custome-hooks/redux';
 
 const Header = () => {
+    const { isLoggedIn } = useAppSelector((state) => state.user)
+    console.log(isLoggedIn)
     const menuList = [
         {
             menu_link: "/",
@@ -42,7 +47,7 @@ const Header = () => {
                     >
                         <i className="fa-solid fa-list"></i>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarResponsive">
+                    <div className="navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ms-auto me-4 my-3 my-lg-0">
                             {menuList?.map((item) => {
                                 return (
@@ -57,8 +62,10 @@ const Header = () => {
                                 );
                             })}
                         </ul>
-                        <Button children={'Log In'} className='me-2' />
-                        <Button children={'Sign Up'} className='ms-2' />
+                        {!isLoggedIn && <>
+                            <Link to='/login'><Button className=''>Log In</Button></Link>
+                            <Link to='/signup'><Button className='ms-2' >Sign Up</Button></Link>
+                        </>}
                     </div>
                 </div>
             </nav >

@@ -1,0 +1,19 @@
+.auth_Active {
+    background-color: var(--bg-blue-primary);
+    border: 1px solid var(--bg-blue-primary);
+    // background-color: red;
+}
+
+.auth_Default_Btn {
+    border: 1px solid var(--bg-blue-primary);
+    color: var(--text-light-color) !important;
+}
+
+.form_Labels {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}

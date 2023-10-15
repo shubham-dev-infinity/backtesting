@@ -1,7 +1,6 @@
-import React from 'react';
 import { PublicRoute } from './router/PublicRoute';
 import { BrowserRouter as Router, Routes } from 'react-router-dom';
-import { PrivateRoute } from './router/PrivateRoute';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -9,8 +8,9 @@ function App() {
     <>
       <Router>
         <PublicRoute />
-      </Router >
-      {/* {!token ? <PublicRoute /> : <PrivateRoute />} */}
+      </Router>
+      <ToastContainer />
+
     </>
   );
 }
