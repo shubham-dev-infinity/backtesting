@@ -3,6 +3,7 @@ import LandingPage from '../pages/home/LandingPage';
 import LogIn from '../pages/login';
 import SignUp from '../pages/signup';
 import Forgotpassword from '../pages/forgot-password';
+import Features from '../pages/features';
 
 
 export interface RouteConfig {
@@ -36,6 +37,24 @@ export const ROUTES: RouteConfig[] = [
     element: <Forgotpassword />,
     publicRoute: true,
     is_blank: true
+  },
+  {
+    path: '/features',
+    element: <Features />,
+    publicRoute: true,
+    is_blank: false
+  },
+  {
+    path: '/plan',
+    element: <Features />,
+    publicRoute: true,
+    is_blank: false
+  },
+  {
+    path: '/contact-us',
+    element: <Features />,
+    publicRoute: true,
+    is_blank: false
   },
 
   // Add more routes here as needed

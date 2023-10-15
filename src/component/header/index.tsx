@@ -21,20 +21,20 @@ const Header = () => {
             title: "Subscription Plan"
         },
         {
-            menu_link: "/contactus",
+            menu_link: "/contact-us",
             title: "Contact Us"
         },
     ]
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-light fixed-top shadow-sm"
+            <nav className="navbar navbar-expand-lg navbar-light sticky-top shadow-sm"
                 id="mainNav"
             >
                 <div className="container px-4">
-                    <Button children={'Logo'} className='' />
-                    {/* <Link className="navbar-brand" to={"/"}>
-                    </Link> */}
+                    <Link to={"/"}>
+                        <Button className='rounded-md text-white' >Logo</Button>
+                    </Link>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -62,8 +62,8 @@ const Header = () => {
                             })}
                         </ul>
                         {!isLoggedIn && <>
-                            <Link to='/login'><Button className=''>Log In</Button></Link>
-                            <Link to='/signup'><Button className='ms-2' >Sign Up</Button></Link>
+                            <Link to='/login'><Button className='rounded-md mr-2 text-white'>Log In</Button></Link>
+                            <Link to='/signup'><Button className='rounded-md text-white' >Sign Up</Button></Link>
                         </>}
                     </div>
                 </div>

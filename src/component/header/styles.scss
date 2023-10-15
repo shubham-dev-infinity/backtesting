@@ -4,42 +4,48 @@
 	// --font-cash-display: ClashDisplay-Regular;
 	// --font-cash-display-bold: ClashDisplay-Bold;
 }
+
 #mainNav {
 	padding-top: 1.5rem;
 	padding-bottom: 1.5rem;
-	background: #15083A;;
+	background: #15083A;
+
 	.navbar-brand {
 		font-family: "Kanit",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
+			-apple-system,
+			BlinkMacSystemFont,
+			"Segoe UI",
+			Roboto,
+			"Helvetica Neue",
+			Arial,
+			sans-serif,
+			"Apple Color Emoji",
+			"Segoe UI Emoji",
+			"Segoe UI Symbol",
+			"Noto Color Emoji";
 	}
+
 	.navbar-toggler {
 		font-size: 1.875rem;
 		padding: 0.5rem 0.8rem;
 		color: #212529;
 	}
+
 	.navbar-nav {
 		.nav-item {
 			.nav-link {
 				color: rgba(255, 255, 255, 0.50);
+
 				&.active {
 					color: #fff;
-                    border-bottom: 1px solid #FFF;
-                    padding-bottom: 0 !important;
+					border-bottom: 1px solid #FFF;
+					padding-bottom: 0 !important;
 				}
 			}
 		}
 	}
 }
+
 #mainNav .navbar-brand:hover,
 #mainNav .navbar-brand:active {
 	color: #fff;
@@ -52,6 +58,7 @@
 	color: #fff !important;
 	background-color: var(--main_color) !important;
 }
+
 .start_btn {
 	padding: 18px 88px !important;
 	color: #fff !important;
@@ -59,6 +66,7 @@
 	font-size: 14px !important;
 	font-weight: 500 !important;
 }
+
 .navbar-toggler {
 	&:focus {
 		text-decoration: none;
@@ -66,9 +74,11 @@
 		box-shadow: 0 0 0 0;
 	}
 }
+
 .navlink-active {
 	color: #fff !important;
 }
+
 .sidebar-toggler {
 	line-height: 1;
 	color: var(--bs-navbar-color);
@@ -85,20 +95,20 @@
 
 
 
-.nav-fill > .nav-link,
+.nav-fill>.nav-link,
 .nav-fill .nav-item {
-  flex: 1 1 auto;
-  text-align: center;
+	flex: 1 1 auto;
+	text-align: center;
 }
 
-.nav-justified > .nav-link,
+.nav-justified>.nav-link,
 .nav-justified .nav-item {
-  flex-basis: 0;
-  flex-grow: 1;
-  text-align: center;
+	flex-basis: 0;
+	flex-grow: 1;
+	text-align: center;
 }
 
 .nav-fill .nav-item .nav-link,
 .nav-justified .nav-item .nav-link {
-  width: 100%;
+	width: 100%;
 }

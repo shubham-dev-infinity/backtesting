@@ -63,7 +63,7 @@ const Forgotpassword = () => {
         <>
             <>
                 <section className='login_Wrapper'>
-                    <div className='w-4/12 px-16 py-8 login'>
+                    <div className='w-1/3 px-16 py-8 login'>
                         <div>
                             <h1 className='text-center text-3xl mb-4 font-bold'>Forgot password</h1>
                             <div>

@@ -22,9 +22,13 @@ const RouteWrapper: React.FC<RouteWrapperProps> = ({ is_Blank, is_Private, child
     }
     return (
         <>
-            {!is_Blank && <Header />}
-            {children}
-            {!is_Blank && <Footer />}
+            <div className="main-container">
+                {!is_Blank && <Header />}
+                <div className="content">
+                    {children}
+                </div>
+                {!is_Blank && <Footer />}
+            </div>
         </>
     );
 }
