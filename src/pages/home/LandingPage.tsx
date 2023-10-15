@@ -61,8 +61,8 @@ function LandingPage() {
                                     {!isLoggedIn && <div className="card_box">
                                         <h3 className="card_title">Login</h3>
                                         <div className="login_signup">
-                                            <Button className="primaryBtn" children={"Login"} />
-                                            <Button className="signup_btn" children={"Sing Up"} />
+                                            <Button className="primaryBtn" >Login</Button>
+                                            <Button className="signup_btn" ><Link to='/signup'> SignUp</Link></Button>
                                         </div>
                                         <div className="input_text">
                                             <div className="e_mail">

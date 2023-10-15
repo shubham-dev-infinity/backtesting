@@ -33,7 +33,7 @@ const Header = () => {
             >
                 <div className="container px-4">
                     <Link to={"/"}>
-                        <Button className='rounded-md text-white' >Logo</Button>
+                        <Button className='rounded-xl text-white' >Logo</Button>
                     </Link>
                     <button
                         className="navbar-toggler"
@@ -62,8 +62,8 @@ const Header = () => {
                             })}
                         </ul>
                         {!isLoggedIn && <>
-                            <Link to='/login'><Button className='rounded-md mr-2 text-white'>Log In</Button></Link>
-                            <Link to='/signup'><Button className='rounded-md text-white' >Sign Up</Button></Link>
+                            <Link to='/login'><Button className='rounded-xl mr-2 text-white'>Log In</Button></Link>
+                            <Link to='/signup'><Button className='rounded-xl text-white' >Sign Up</Button></Link>
                         </>}
                     </div>
                 </div>
