@@ -53,7 +53,7 @@ function LandingPage() {
                                 <div className='col-lg-7'>
                                     <h1 className='banner_head position-relative inline'>Let’s Go To your <br />
                                         <span>Backtesting</span> Here
-                                        <img src='/assets/img/starimg.png' alt='star' className='starImg' />
+                                        <img src='/assets/img/starImg.png' alt='' className='starImg' />
                                     </h1>
                                     <h3 className='banner_grayTxt'>(Banknifty & Nifty) </h3>
                                 </div>
