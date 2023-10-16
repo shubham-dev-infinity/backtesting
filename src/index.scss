@@ -68,3 +68,14 @@ code {
     }
   }
 }
+
+.feature_Img {
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+.flex_2 {
+  flex: 2;
+}
