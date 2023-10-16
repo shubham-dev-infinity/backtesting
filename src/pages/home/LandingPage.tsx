@@ -25,71 +25,33 @@ function LandingPage() {
 
   const handleLogin = async () => {
     const body = formFields;
-    try {
-      const response: any = await post("user/login", body);
-      console.log(response);
+    if (formFields.userId && formFields.password) {
+      try {
+        const response: any = await post("user/login", body);
+        console.log(response);
 
-      if (response.status === 200) {
-        const { _id, name, email, phoneNumber, countryCode, isBlock } =
-          response.data.userData;
-        const user = { _id, name, email, phoneNumber, countryCode, isBlock };
-        localStorage.setItem("backtest_Toke", response.data.token);
-        dispatch(
-          initializeUser({
-            data: { userBasic: user, token: response.data.token },
-          })
-        );
-        toast.success(response.message);
+        if (response.status === 200) {
+          const { _id, name, email, phoneNumber, countryCode, isBlock } =
+            response.data.userData;
+          const user = { _id, name, email, phoneNumber, countryCode, isBlock };
+          localStorage.setItem("backtest_Toke", response.data.token);
+          dispatch(
+            initializeUser({
+              data: { userBasic: user, token: response.data.token },
+            })
+          );
+          toast.success(response.message);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      toast.error("Credential Not Matching");
+    } else {
+      toast.error("Enter Valid Username OR Password");
     }
   };
 
   return (
     <>
-      {/* <div className='home_banner_wrpper'>
-                <div className='banner_wrapper'>
-                    <div className='container'>
-                        <div className='content_mt'>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex_2'>
-                                    <h1 className='banner_head relative inline'>Let’s Go To your <br />
-                                        <span>Backtesting</span> Here
-                                        <img src='/assets/img/starImg.png' alt='' className='starImg' />
-                                    </h1>
-                                    <h3 className='banner_grayTxt'>(Banknifty & Nifty) </h3>
-                                </div>
-                                <div className='flex-1'>
-                                    {!isLoggedIn && <div className="card_box">
-                                        <h3 className="card_title">Login</h3>
-                                        <div className="login_signup">
-                                            <Button className="primaryBtn" >Login</Button>
-                                            <Button className="signup_btn" ><Link to='/signup'> SignUp</Link></Button>
-                                        </div>
-                                        <div className="input_text">
-                                            <div className="e_mail">
-                                                <h5>Email</h5>
-                                                <input className='inputClass' type="email" placeholder="Enter your Email here" name="userId" value={formFields.userId} onChange={handleFormChange} />
-                                            </div>
-                                            <div className="e_mail">
-                                                <h5>Password</h5>
-                                                <input className='inputClass' type="password" placeholder="Enter your Email here" name="password" value={formFields.password} onChange={handleFormChange} />
-                                            </div>
-                                            <p className="forgot_text"><Link to='/reset-password'>Forgot Password?</Link> </p>
-                                        </div>
-                                        <div className="main_btn">
-                                            <Button className="btn_wrap" children={"Login"} onClick={handleLogin} />
-                                            <p className="btn_wrap_text">Or</p>
-                                            <p className="btn_wrap_text">Don’t have an account? <span className="signup_mark"><Link to={'/signup'}> SignUp</Link></span></p>
-                                        </div>
-                                    </div>}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
       <div className="home_banner_wrpper mb-10 bg-gray-100">
         <div className="banner_wrapper">
           <div className="container">
@@ -148,7 +110,10 @@ function LandingPage() {
                         </p>
                       </div>
                       <div className="main_btn mt-10">
-                        <Button className="btn_wrap bg-blue-500 text-white w-full rounded-l">
+                        <Button
+                          className="btn_wrap bg-blue-500 text-white w-full rounded-l"
+                          onClick={handleLogin}
+                        >
                           Login
                         </Button>
                         <p className="btn_wrap_text text-gray-500 text-base my-2">
@@ -171,7 +136,7 @@ function LandingPage() {
       </div>
       <section className="bg-white py-6 md:py-10 lg:py-14">
         <div className="container mx-auto sm:px-4">
-          <div className="text-2xl font-semibold relative mb-4">
+          <div className="text-2xl font-semibold relative mb-10 md:mb-16">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
               About Backtesting
             </h2>
@@ -218,7 +183,7 @@ function LandingPage() {
       <section className="bg-white py-6 md:py-10 lg:py-14">
         <div className="container mx-auto">
           <div className="relative">
-            <div className="text-2xl font-semibold relative mb-4">
+            <div className="text-2xl font-semibold relative mb-10 md:mb-16">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
                 Features
               </h2>
@@ -267,7 +232,7 @@ function LandingPage() {
       </section>
       <section className="bg-white py-6 md:py-10 lg:py-14">
         <div className="container mx-auto">
-          <div className="text-2xl font-semibold relative mb-4">
+          <div className="text-2xl font-semibold relative mb-10 md:mb-16">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
               Subscription Plans
             </h2>
@@ -292,7 +257,7 @@ function LandingPage() {
       <section className="bg-white py-6 md:py-10 lg:py-14">
         <div className="container mx-auto">
           <div className="relative">
-            <div className="text-2xl font-semibold relative mb-4">
+            <div className="text-2xl font-semibold relative mb-10 md:mb-16">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
                 Get To Know us
               </h2>
