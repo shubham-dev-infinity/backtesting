@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 import { useAppDispatch } from '../../custome-hooks/redux';
 import { TUserBasic, initializeUser } from '../../store/slices/user/userSlice';
 import { TSignUpresponse } from '../../types/response';
+import Loader from '../../component/loader';
+import cn from 'classnames';
 
 type Inputs = {
     name: string;
@@ -23,7 +25,7 @@ const SignUp = () => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [countryCode, setCountryCode] = useState("");
     const [recievedOTP, setRecievedOTP] = useState<null | boolean>(null)
-    const { register, handleSubmit, formState: { errors }, control } = useForm<Inputs>();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<Inputs>();
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
@@ -47,7 +49,6 @@ const SignUp = () => {
                 }
             } catch (error) {
                 console.log(error)
-                toast.error('Soemthing went wrong')
             }
 
         } else {
@@ -131,9 +132,8 @@ const SignUp = () => {
                                 </>
                                 }
 
-
                                 <div className='text-center my-4'>
-                                    <Button className='auth_Active' type='submit'>{recievedOTP ? 'Varify OTP' : 'Get OTP'}</Button>
+                                    <Button className={cn('auth_Active', isSubmitting && 'btn_Disable  cursor-not-allowed')} disabled={isSubmitting} type='submit'>{isSubmitting ? <Loader /> : recievedOTP ? 'Varify OTP' : 'Get OTP'}</Button>
                                 </div>
                                 <p className='text-center mb-2 text_Light'>or</p>
                                 <p className='text-center text_Light'>Already Have Account?<Link to='/login' className='text-blue-500'> Sign In</Link></p>

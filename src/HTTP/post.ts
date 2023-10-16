@@ -1,4 +1,5 @@
 import axios, { AxiosError, CancelTokenSource } from "axios";
+import { toast } from "react-toastify";
 
 export default async function post<T>(
     endpoint: string,
@@ -16,6 +17,18 @@ export default async function post<T>(
 
         return response.data;
     } catch (error) {
-        throw new Error((error as AxiosError).message);
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError;
+            const responseMessage = axiosError.response?.data as object;
+            if (Object.keys(responseMessage).length !== 0) {
+                toast.error(error.response?.data.message)
+                throw new Error((responseMessage as any)?.message);
+            } else {
+                throw new Error(axiosError.message || "An error occurred.");
+            }
+        } else {
+            throw error;
+        }
     }
+
 }

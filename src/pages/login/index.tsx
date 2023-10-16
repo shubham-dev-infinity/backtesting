@@ -1,13 +1,15 @@
 import { Button } from '../../component/button'
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import './styles.scss'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2';
 import post from '../../HTTP/post';
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../custome-hooks/redux';
 import { initializeUser } from '../../store/slices/user/userSlice';
 import { toast } from 'react-toastify';
+import cn from 'classnames';
+import Loader from '../../component/loader';
 
 type Inputs = {
     name: string;
@@ -19,6 +21,8 @@ type Inputs = {
 };
 
 const LogIn = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const navigate = useNavigate();
     const { isLoggedIn } = useAppSelector((state) => state.user)
     const [formFields, setFormFields] = useState({
         userId: '',
@@ -33,6 +37,7 @@ const LogIn = () => {
 
     const handleLogin = async () => {
         const body = formFields
+        setIsSubmitting(true)
         try {
             const response: any = await post('user/login', body)
             console.log(response)
@@ -43,11 +48,13 @@ const LogIn = () => {
                 localStorage.setItem('backtest_Toke', response.data.token);
                 dispatch(initializeUser({ data: { userBasic: user, token: response.data.token }, }))
                 toast.success(response.message)
+                navigate('/')
             }
 
         } catch (error) {
             toast.error('Credential Not Matching')
         }
+        setIsSubmitting(false)
     }
     return (
         <>
@@ -71,7 +78,7 @@ const LogIn = () => {
                             <p className="forgot_text"><Link to='/reset-password'>Forgot Password?</Link> </p>
                         </div>
                         <div className="main_btn">
-                            <Button className="btn_wrap" children={"Login"} onClick={handleLogin} />
+                            <Button className={cn('auth_Active  mb-4', isSubmitting && 'btn_Disable  cursor-not-allowed')} disabled={isSubmitting} onClick={handleLogin} >{isSubmitting ? <Loader /> : 'Log In'}</Button>
                             <p className="btn_wrap_text">Or</p>
                             <p className="btn_wrap_text">Don’t have an account? <span className="signup_mark"><Link to={'/signup'}> SignUp</Link></span></p>
                         </div>
