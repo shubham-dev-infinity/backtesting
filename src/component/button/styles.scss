@@ -1,9 +1,26 @@
 .cm_btn {
-    border: 1px solid #FFF;
-    font-size: 1rem;
-    font-style: normal;
-    line-height: 20px;
-    background-color: transparent;
-    /* 125% */
-    // width: 160px;
+  border: 1px solid #fff;
+  font-size: 1rem;
+  font-style: normal;
+  line-height: 20px;
+  background-color: transparent;
+  padding: 13px 45px;
+  /* 125% */
+  // width: 160px;
+}
+@media (max-width: 1299px) {
+  .cm_btn {
+    padding: 13px 30px;
+  }
+}
+@media (max-width: 991px) {
+  .cm_btn {
+    font-size: 0.75rem;
+    padding: 0.65rem 2rem;
+  }
+}
+@media (max-width: 367px) {
+  .cm_btn {
+    padding: 20px 2.5rem;
+  }
 }
