@@ -5,8 +5,6 @@
   // --font-cash-display-bold: ClashDisplay-Bold;
 }
 
-
-
 .header_bg {
   background-color: #15083a;
   position: fixed;
@@ -28,27 +26,27 @@ ul {
   }
   position: relative;
 }
-li {
-  &::after {
-    content: "";
-    position: absolute;
-    right: 33.5%;
-    top: -13%;
-    width: 0.063rem;
-    height: 3.875rem;
-    background-color: white;
-  }
-  @media (max-width: 1299px) {
-    &::after {
-      right: 29.5%;
-    }
-  }
-  @media (max-width: 1299px) {
-    &::after {
-      content: none;
-    }
-  }
-}
+  // li {
+  //   &::after {
+  //     content: "";
+  //     position: absolute;
+  //     right: 33.5%;
+  //     top: -13%;
+  //     width: 0.063rem;
+  //     height: 3.875rem;
+  //     background-color: white;
+  //   }
+  //   @media (max-width: 1299px) {
+  //     &::after {
+  //       right: 29.5%;
+  //     }
+  //   }
+  //   @media (max-width: 1299px) {
+  //     &::after {
+  //       content: none;
+  //     }
+  //   }
+  // }
 .inline_Block {
   &:hover {
     border-bottom: 0.063rem solid white;
@@ -59,7 +57,7 @@ i.fa-solid.fa-bars {
   color: white;
   font-size: 1.875rem;
 }
-@media (max-width:367px) {
+@media (max-width: 367px) {
   i.fa-solid.fa-bars {
     font-size: 2.188rem;
   }
@@ -81,5 +79,7 @@ i.fa-solid.fa-bars {
 }
 
 .menu_Height {
-  height: 400px;
+  @media screen and (max-width: 768px) {
+    height: 400px;
+  }
 }

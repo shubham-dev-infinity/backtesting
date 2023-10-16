@@ -1,9 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'react-phone-input-2/lib/material.css';
-@import 'react-toastify/dist/ReactToastify.css';
-
+@import "react-phone-input-2/lib/material.css";
+@import "react-toastify/dist/ReactToastify.css";
 
 @font-face {
   font-family: Poppins;
@@ -12,8 +11,8 @@
 
 :root {
   --font-poppins: Poppins;
-  --bg-blue-primary: #1477EB;
-  --text-blue-primary: #1477EB;
+  --bg-blue-primary: #1477eb;
+  --text-blue-primary: #1477eb;
   --text-light-color: #00000080;
 }
 
@@ -36,13 +35,13 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 :root {
-  --assent-primary: #1477EB;
-  --font-family: var(--font-poppins)
+  --assent-primary: #1477eb;
+  --font-family: var(--font-poppins);
 }
 
 .text_Light {
@@ -58,9 +57,9 @@ code {
     width: 100% !important;
     outline: none !important;
     // padding: 1rem !important;
-    border-radius: .6125rem !important;
+    border-radius: 0.6125rem !important;
     border: none !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.20) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
 
     &:focus {
       outline: 2px solid black !important;
@@ -68,4 +67,18 @@ code {
       border: none !important;
     }
   }
+}
+
+.feature_Img {
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+.flex_2 {
+  flex: 2;
+}
+.flex_3 {
+  flex: 3;
 }
