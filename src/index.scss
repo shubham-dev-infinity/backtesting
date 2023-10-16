@@ -1,8 +1,9 @@
-@import 'react-phone-input-2/lib/material.css';
-@import 'react-toastify/dist/ReactToastify.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'react-phone-input-2/lib/material.css';
+@import 'react-toastify/dist/ReactToastify.css';
+
 
 @font-face {
   font-family: Poppins;
