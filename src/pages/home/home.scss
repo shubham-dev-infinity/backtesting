@@ -6,11 +6,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    padding-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 9rem;
+    padding-top: 2.5rem;
   }
 
   .banner_head {
@@ -62,19 +61,20 @@
   position: absolute;
   bottom: 90%;
   left: 90%;
+
   @media screen and (max-width: 1400px) {
     width: 4rem;
   }
+
   @media screen and (max-width: 1024px) {
     width: 3rem;
   }
 }
 
 .card_box {
-  border-radius: 30px;
+  border-radius: 2rem;
   background: #fff;
-  box-shadow: 0px 0px 14px 7px rgba(20, 119, 235, 0.25);
-  padding: 50px 70px 60px 70px;
+  box-shadow: 0px 0px .8rem .5rem rgba(20, 119, 235, 0.25);
 }
 
 .card_title {
@@ -93,7 +93,7 @@
 }
 
 .primaryBtn {
-  border-radius: 5px 0px 0px 5px !important;
+  // border-radius: 5px 0px 0px 5px !important;
   background: #1477eb !important;
   color: #fff !important;
   font-weight: 400 !important;
@@ -102,14 +102,14 @@
 }
 
 .signup_btn {
-  border-radius: 0px 5px 5px 0px !important;
+  // border-radius: 0px 5px 5px 0px !important;
   border: 1px solid #1477eb !important;
   color: rgba(0, 0, 0, 0.5) !important;
   font-weight: 400 !important;
   width: 100% !important;
-  padding: 0.625rem 2.5rem;
 }
-.login_btn{
+
+.login_btn {
   border-radius: 0px 0px 0px 0px;
   border: 1px solid #1477eb !important;
   color: rgba(0, 0, 0, 0.5) !important;
@@ -117,6 +117,7 @@
   width: 100% !important;
   padding: 0.625rem 2.5rem;
 }
+
 .input_text {
   margin-top: 20px;
 }
@@ -205,6 +206,7 @@ input::placeholder {
   background-color: #1477eb !important;
   box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05) !important;
 }
+
 section {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -212,6 +214,7 @@ section {
 
 .home_Banner {
   padding: 0 1rem;
+
   div {
     &:nth-child(1) {
       flex: 1;
@@ -220,6 +223,7 @@ section {
         flex: 3;
       }
     }
+
     &:nth-child(2) {
       flex: 1;
 

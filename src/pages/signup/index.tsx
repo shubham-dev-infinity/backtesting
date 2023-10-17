@@ -1,16 +1,16 @@
 import { Button } from "../../component/button";
-import { Controller, FieldValues, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { FieldValues, useForm } from "react-hook-form";
 import PhoneInput, { CountryData } from "react-phone-input-2";
 import post from "../../HTTP/post";
 import "./styles.scss";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "../../custome-hooks/redux";
-import { TUserBasic, initializeUser } from "../../store/slices/user/userSlice";
+import { initializeUser } from "../../store/slices/user/userSlice";
 import { TSignUpresponse } from "../../types/response";
 import Loader from "../../component/loader";
 import cn from "classnames";
+import { changeModal } from "../../store/slices/modal/modalSlice";
 
 type Inputs = {
   name: string;
@@ -30,11 +30,10 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: FieldValues) => {
-    const { name, email, password, otp } = data;
+    const { name, email, password, otp, confirmpassword } = data;
     const code = countryCode;
     const numberWithCode = phoneNumber;
     const numberWithoutCode = `+${numberWithCode}`.replace(`+${code}`, "");
@@ -46,13 +45,18 @@ const SignUp = () => {
         countryCode: `+${countryCode}`,
         password,
       };
-      try {
-        const response: any = await post("user/signup", body);
-        if (response.status === 200) {
-          setRecievedOTP(true);
+      if (password === confirmpassword) {
+
+        try {
+          const response: any = await post("user/signup", body);
+          if (response.status === 200) {
+            setRecievedOTP(true);
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
+      } else {
+        toast.error('password need to match')
       }
     } else {
       const body = {
@@ -74,7 +78,6 @@ const SignUp = () => {
             })
           );
           toast.success("Succesfuly Register");
-          navigate("/");
         }
       } catch (error) {
         console.log(error);
@@ -83,141 +86,122 @@ const SignUp = () => {
   };
   return (
     <>
-      <section className="login_Wrapper">
-        <div className="w-1/2 lg:w-1/3  lg:px-16 lg:py-8 login">
-          <div>
-            <h1 className="text-center text-3xl mb-4 font-bold">Sign Up</h1>
-            <div className="w-full text-center mb-4 flex">
-              {/* <Button className='auth_Default_Btn flex-1'><Link to={'/login'}>Login</Link></Button> */}
-              <button
-                className="login_btn flex-1"
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </button>
-              <Button className="auth_Active flex-1">SignUp</Button>
-            </div>
-            <div>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="signup_Name" className="form_Labels">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  className="inputClass"
-                  id="signup_Name"
-                  placeholder="Enter Your Name here"
-                  {...register("name", {
-                    required: true,
-                  })}
-                />
+      <form onSubmit={handleSubmit(onSubmit)} className="input_text">
+        <label htmlFor="signup_Name" className="form_Labels">
+          Name
+        </label>
+        <input
+          type="text"
+          className="inputClass"
+          id="signup_Name"
+          placeholder="Enter Your Name here"
+          {...register("name", {
+            required: true,
+          })}
+        />
 
-                {!recievedOTP && (
-                  <>
-                    <label htmlFor="signup_Email" className="form_Labels">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="inputClass"
-                      id="signup_Email"
-                      placeholder="Enter Your email here"
-                      {...register("email", {
-                        required: true,
-                      })}
-                    />
-                  </>
-                )}
+        {!recievedOTP && (
+          <>
+            <label htmlFor="signup_Email" className="form_Labels">
+              Email
+            </label>
+            <input
+              type="email"
+              className="inputClass"
+              id="signup_Email"
+              placeholder="Enter Your email here"
+              {...register("email", {
+                required: true,
+              })}
+            />
+          </>
+        )}
 
-                <label htmlFor="signup_Number" className="form_Labels">
-                  Phone No:
-                </label>
-                <div className="phone_Input_Wrapper">
-                  <PhoneInput
-                    country={"us"}
-                    value={phoneNumber}
-                    onChange={(value, country) => {
-                      setPhoneNumber(value);
-                      setCountryCode((country as CountryData).dialCode);
-                    }}
-                  />
-                </div>
-
-                {!recievedOTP && (
-                  <>
-                    <label htmlFor="signup_Password" className="form_Labels">
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      className="inputClass"
-                      id="signup_Password"
-                      placeholder="Enter Your password Here"
-                      {...register("password", {
-                        required: true,
-                      })}
-                    />
-                    <label htmlFor="signup_CPassword" className="form_Labels">
-                      Confirm
-                    </label>
-                    <input
-                      type="text"
-                      className="inputClass"
-                      id="signup_CPassword"
-                      placeholder="This need to same as password"
-                      {...register("confirmpassword", {
-                        required: true,
-                      })}
-                    />
-                  </>
-                )}
-
-                {!!recievedOTP && (
-                  <>
-                    <label htmlFor="signup_OTP" className="form_Labels">
-                      otp
-                    </label>
-                    <input
-                      type="text"
-                      className="inputClass"
-                      id="signup_OTP"
-                      placeholder="This need to same as password"
-                      {...register("otp")}
-                    />
-                  </>
-                )}
-
-                <div className="text-center my-4">
-                  <Button
-                    className={cn(
-                      "auth_Active",
-                      isSubmitting && "btn_Disable  cursor-not-allowed"
-                    )}
-                    disabled={isSubmitting}
-                    type="submit"
-                  >
-                    {isSubmitting ? (
-                      <Loader />
-                    ) : recievedOTP ? (
-                      "Varify OTP"
-                    ) : (
-                      "Get OTP"
-                    )}
-                  </Button>
-                </div>
-                <p className="text-center mb-2 text_Light">or</p>
-                <p className="text-center text_Light">
-                  Already Have Account?
-                  <Link to="/login" className="text-blue-500">
-                    {" "}
-                    Sign In
-                  </Link>
-                </p>
-              </form>
-            </div>
-          </div>
+        <label htmlFor="signup_Number" className="form_Labels">
+          Phone No:
+        </label>
+        <div className="phone_Input_Wrapper">
+          <PhoneInput
+            country={"us"}
+            value={phoneNumber}
+            onChange={(value, country) => {
+              setPhoneNumber(value);
+              setCountryCode((country as CountryData).dialCode);
+            }}
+          />
         </div>
-      </section>
+
+        {!recievedOTP && (
+          <>
+            <label htmlFor="signup_Password" className="form_Labels">
+              Password
+            </label>
+            <input
+              type="password"
+              className="inputClass"
+              id="signup_Password"
+              placeholder="Enter Your password Here"
+              {...register("password", {
+                required: true,
+              })}
+            />
+            <label htmlFor="signup_CPassword" className="form_Labels">
+              Confirm
+            </label>
+            <input
+              type="text"
+              className="inputClass"
+              id="signup_CPassword"
+              placeholder="This need to same as password"
+              {...register("confirmpassword", {
+                required: true,
+              })}
+            />
+          </>
+        )}
+
+        {!!recievedOTP && (
+          <>
+            <label htmlFor="signup_OTP" className="form_Labels">
+              otp
+            </label>
+            <input
+              type="text"
+              className="inputClass"
+              id="signup_OTP"
+              placeholder="This need to same as password"
+              {...register("otp")}
+            />
+          </>
+        )}
+
+        <div className="text-center my-4">
+          <Button
+            className={cn(
+              "auth_Active",
+              isSubmitting && "btn_Disable  cursor-not-allowed"
+            )}
+            disabled={isSubmitting}
+            type="submit"
+          >
+            {isSubmitting ? (
+              <Loader />
+            ) : recievedOTP ? (
+              "Varify OTP"
+            ) : (
+              "Get OTP"
+            )}
+          </Button>
+        </div>
+        <p className="text-center mb-2 text_Light">or</p>
+        <p className="text-center text_Light">
+          Already Have Account?
+          {" "}
+          <span className="text-blue-500 cursor-pointer" onClick={() => dispatch(changeModal({ data: 'login' }))}>
+            Sign In
+          </span>
+        </p>
+      </form>
     </>
   );
 };

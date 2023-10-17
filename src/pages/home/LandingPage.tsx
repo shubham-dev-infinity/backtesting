@@ -1,55 +1,28 @@
 import "./home.scss";
 import { Button } from "../../component/button";
 import { useAppDispatch, useAppSelector } from "../../custome-hooks/redux";
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import post from "../../HTTP/post";
-import { toast } from "react-toastify";
-import { initializeUser } from "../../store/slices/user/userSlice";
 import subscriptionData from "./components/subscription-plan/data";
 import SubscriptionPlan from "./components/subscription-plan";
-import { useNavigate } from "react-router-dom";
+import SignUp from "../signup";
+import Forgotpassword from "../forgot-password";
+import LogIn from "../login";
+import { changeModal } from "../../store/slices/modal/modalSlice";
+import cn from "classnames";
 
 function LandingPage() {
   const { isLoggedIn } = useAppSelector((state) => state.user);
+  const modal = useAppSelector((state) => state.modal.modal);
   const [activeSub, setActiveSub] = useState(-1);
-  const [formFields, setFormFields] = useState({
-    userId: "",
-    password: "",
-  });
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormFields((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleLogin = async () => {
-    const body = formFields;
-    if (formFields.userId && formFields.password) {
-      try {
-        const response: any = await post("user/login", body);
-        console.log(response);
-
-        if (response.status === 200) {
-          const { _id, name, email, phoneNumber, countryCode, isBlock } =
-            response.data.userData;
-          const user = { _id, name, email, phoneNumber, countryCode, isBlock };
-          localStorage.setItem("backtest_Toke", response.data.token);
-          dispatch(
-            initializeUser({
-              data: { userBasic: user, token: response.data.token },
-            })
-          );
-          toast.success(response.message);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      toast.error("Enter Valid Username OR Password");
+  const whichModalShow = () => {
+    if (modal === 'signup') {
+      return <SignUp />
+    } else if (modal === 'forgot') {
+      return <Forgotpassword />
     }
-  };
+    return <LogIn />
+  }
 
   return (
     <>
@@ -57,7 +30,7 @@ function LandingPage() {
         <div className="banner_wrapper">
           <div className="container">
             <div className="content_mt">
-              <div className="lg:flex lg:justify-between lg:items-center home_Banner">
+              <div className="lg:flex lg:justify-between lg:items-center home_Banner" id='main'>
                 <div className="mb-8 lg:mb-0 flex_2 text-center lg:text-left md:leading-10">
                   <h1 className="banner_head relative inline text-3xl lg:text-5xl font-semibold">
                     Let’s Go To your <br />
@@ -71,68 +44,25 @@ function LandingPage() {
                   <h3 className="banner_grayTxt">(Banknifty & Nifty) </h3>
                   <br />
                 </div>
-                <div className="">
+                <div>
                   {!isLoggedIn && (
-                    <div className="card_box bg-white rounded-lg shadow-md p-6 lg:p-10">
-                      <h3 className="card_title text-2xl text-center font-semibold mb-8">
-                        Login
+                    <div className="card_box bg-white rounded-lg shadow-md p-4 lg:p-12">
+                      <h3 className="card_title text-2xl text-center font-semibold mb-8 capitalize">
+                        {modal}
                       </h3>
-                      <div className="login_signup flex">
-                        <Button className="primaryBtn flex-1">Login</Button>
-                        {/* <Button className="signup_btn flex-1">
-                          <Link to="/signup">Sign Up</Link>
-                        </Button> */}
-                        <button
-                          className="signup_btn flex-1"
-                          onClick={() => navigate("/signup")}
+                      {modal !== 'forgot' && <div className="login_signup flex">
+                        <Button className={cn(modal === 'login' ? 'primaryBtn' : 'signup_btn', 'flex-1')} onClick={() => dispatch(changeModal({ data: 'login' }))}
+                        >Login</Button>
+                        <Button
+                          className={cn(modal === 'signup' ? 'primaryBtn' : 'signup_btn', 'flex-1')}
+                          onClick={() => dispatch(changeModal({ data: 'signup' }))}
                         >
                           Sign Up
-                        </button>
-                      </div>
-                      <div className="input_text mt-5">
-                        <div className="e_mail">
-                          <h5 className="text-gray-500 text-base">Email</h5>
-                          <input
-                            className="inputClass w-full px-4 py-2 border-b border-gray-300"
-                            type="email"
-                            placeholder="Enter your Email here"
-                            name="userId"
-                            value={formFields.userId}
-                            onChange={handleFormChange}
-                          />
-                        </div>
-                        <div className="e_mail">
-                          <h5 className="text-gray-500 text-base">Password</h5>
-                          <input
-                            className="inputClass w-full px-4 py-2 border-b border-gray-300"
-                            type="password"
-                            placeholder="Enter your Email here"
-                            name="password"
-                            value={formFields.password}
-                            onChange={handleFormChange}
-                          />
-                        </div>
-                        <p className="forgot_text text-right">
-                          <Link to="/reset-password">Forgot Password?</Link>{" "}
-                        </p>
-                      </div>
-                      <div className="main_btn mt-10">
-                        <Button
-                          className="btn_wrap bg-blue-500 text-white w-full rounded-l"
-                          onClick={handleLogin}
-                        >
-                          Login
                         </Button>
-                        <p className="btn_wrap_text text-gray-500 text-base my-2">
-                          Or
-                        </p>
-                        <p className="btn_wrap_text text-gray-500 text-base mb-10">
-                          Don’t have an account?{" "}
-                          <span className="signup_mark text-blue-500">
-                            <Link to={"/signup"}>Sign Up</Link>
-                          </span>
-                        </p>
-                      </div>
+                      </div>}
+                      {
+                        whichModalShow()
+                      }
                     </div>
                   )}
                 </div>
@@ -151,38 +81,38 @@ function LandingPage() {
           </div>
           <div className="text-center relative">
             {/* <p className="text-base md:text-lg lg:text-xl mt-10"> */}
-              <h5 className="text-base md:text-lg lg:text-xl mb-4">
-                Backtesting lets you look at your strategies on historical data
-                to decide how well it would have worked within the past. In case
-                you've got created a technique with which you're prepared to go
-                live, the Backtesting highlight will assist you to get it in the
-                event that your strategies are reasonable and possibly
-                effective.
-              </h5>
-              <h5 className="text-base md:text-lg lg:text-xl mb-4">
-                Backtesting lets you look at your strategies on historical data
-                to decide how well it would have worked within the past. In case
-                you've got created a technique with which you're prepared to go
-                live, the Backtesting highlight will assist you to get it in the
-                event that your strategies are reasonable and possibly
-                effective.
-              </h5>
-              <h5 className="text-base md:text-lg lg:text-xl mb-4">
-                Backtesting lets you look at your strategies on historical data
-                to decide how well it would have worked within the past. In case
-                you've got created a technique with which you're prepared to go
-                live, the Backtesting highlight will assist you to get it in the
-                event that your strategies are reasonable and possibly
-                effective.
-              </h5>
-              <h5 className="text-base md:text-lg lg:text-xl mb-4">
-                Backtesting lets you look at your strategies on historical data
-                to decide how well it would have worked within the past. In case
-                you've got created a technique with which you're prepared to go
-                live, the Backtesting highlight will assist you to get it in the
-                event that your strategies are reasonable and possibly
-                effective.
-              </h5>
+            <h5 className="text-base md:text-lg lg:text-xl mb-4">
+              Backtesting lets you look at your strategies on historical data
+              to decide how well it would have worked within the past. In case
+              you've got created a technique with which you're prepared to go
+              live, the Backtesting highlight will assist you to get it in the
+              event that your strategies are reasonable and possibly
+              effective.
+            </h5>
+            <h5 className="text-base md:text-lg lg:text-xl mb-4">
+              Backtesting lets you look at your strategies on historical data
+              to decide how well it would have worked within the past. In case
+              you've got created a technique with which you're prepared to go
+              live, the Backtesting highlight will assist you to get it in the
+              event that your strategies are reasonable and possibly
+              effective.
+            </h5>
+            <h5 className="text-base md:text-lg lg:text-xl mb-4">
+              Backtesting lets you look at your strategies on historical data
+              to decide how well it would have worked within the past. In case
+              you've got created a technique with which you're prepared to go
+              live, the Backtesting highlight will assist you to get it in the
+              event that your strategies are reasonable and possibly
+              effective.
+            </h5>
+            <h5 className="text-base md:text-lg lg:text-xl mb-4">
+              Backtesting lets you look at your strategies on historical data
+              to decide how well it would have worked within the past. In case
+              you've got created a technique with which you're prepared to go
+              live, the Backtesting highlight will assist you to get it in the
+              event that your strategies are reasonable and possibly
+              effective.
+            </h5>
             {/* </p> */}
           </div>
         </div>

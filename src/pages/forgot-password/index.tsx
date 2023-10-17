@@ -5,6 +5,8 @@ import { Button } from '../../component/button';
 import { useState } from 'react'
 import post from '../../HTTP/post';
 import { toast } from 'react-toastify';
+import { useAppDispatch } from '../../custome-hooks/redux';
+import { changeModal } from '../../store/slices/modal/modalSlice';
 
 type Inputs = {
     phoneNumber: string;
@@ -19,6 +21,7 @@ const Forgotpassword = () => {
     const [countryCode, setCountryCode] = useState("");
     const { register, handleSubmit, formState: { errors }, control } = useForm<Inputs>();
     const navigate = useNavigate()
+    const dispatch = useAppDispatch();
     const onSubmit = async (data: FieldValues) => {
         const { otp, password, confirmpassword } = data
         const code = countryCode;
@@ -37,7 +40,6 @@ const Forgotpassword = () => {
                 }
             } catch (error) {
                 console.log(error)
-                toast.error('Soemthing went wrong')
             }
         } else {
             const body = {
@@ -50,7 +52,7 @@ const Forgotpassword = () => {
                 const response: any = await post('user/password/reset', body)
                 if (response.status === 200) {
                     toast.success(response.message)
-                    navigate('/')
+                    dispatch(changeModal({ data: 'login' }))
                 } else {
                     toast.error(response.message)
                 }
@@ -61,64 +63,52 @@ const Forgotpassword = () => {
     };
     return (
         <>
-            <>
-                <section className='login_Wrapper'>
-                    <div className='w-1/3 px-16 py-8 login'>
-                        <div>
-                            <h1 className='text-center text-3xl mb-4 font-bold'>Forgot password</h1>
-                            <div>
-                                <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <label htmlFor="signup_Number" className='form_Labels'>Phone No:</label>
+                <div className='phone_Input_Wrapper'>
+                    <PhoneInput
+                        country={'us'}
+                        value={phoneNumber}
+                        onChange={(value, country) => {
+                            setPhoneNumber(value);
+                            setCountryCode((country as CountryData).dialCode);
+                        }}
+                    />
+                </div>
 
-                                    <label htmlFor="signup_Number" className='form_Labels'>Phone No:</label>
-                                    <div className='phone_Input_Wrapper'>
-                                        <PhoneInput
-                                            country={'us'}
-                                            value={phoneNumber}
-                                            onChange={(value, country) => {
-                                                setPhoneNumber(value);
-                                                setCountryCode((country as CountryData).dialCode);
-                                            }}
-                                        />
-                                    </div>
+                {!!recievedOTP && <>
 
-                                    {!!recievedOTP && <>
+                    <label htmlFor="forgot_OTP" className='form_Labels'>otp</label>
+                    <input type='text' className='inputClass' id='forgot_OTP' placeholder='Enter OTP here'  {...register('otp')} />
 
-                                        <label htmlFor="forgot_OTP" className='form_Labels'>otp</label>
-                                        <input type='text' className='inputClass' id='forgot_OTP' placeholder='Enter OTP here'  {...register('otp')} />
-
-                                        <label htmlFor="">Password</label>
-                                        <input type='password' className='inputClass' placeholder='Enter Your password Here' {...register('password', {
-                                            required: true
-                                        })} />
+                    <label htmlFor="">Password</label>
+                    <input type='password' className='inputClass' placeholder='Enter Your password Here' {...register('password', {
+                        required: true
+                    })} />
 
 
-                                        <label htmlFor="">Confirm Password</label>
-                                        <input type='text' className='inputClass' placeholder='This need to same as password' {...register('confirmpassword', {
-                                            required: true
-                                        })} />
+                    <label htmlFor="">Confirm Password</label>
+                    <input type='text' className='inputClass' placeholder='This need to same as password' {...register('confirmpassword', {
+                        required: true
+                    })} />
 
-                                    </>
-                                    }
-                                    <div className='text-center my-4'>
-                                        <Button type='submit' className='auth_Active'>{!recievedOTP ? 'Get OTP' : 'Reset Password'}</Button>
-                                    </div>
+                </>
+                }
+                <div className='text-center my-4'>
+                    <Button type='submit' className='auth_Active'>{!recievedOTP ? 'Get OTP' : 'Reset Password'}</Button>
+                </div>
 
 
-                                    {recievedOTP && <p className='text-center mb-2 text_Light'>Resend OTP</p>}
+                {recievedOTP && <p className='text-center mb-2 text_Light'>Resend OTP</p>}
 
-                                    <p className='text-center mb-2 text_Light'>or</p>
+                <p className='text-center mb-2 text_Light'>or</p>
 
-                                    <div className='text-center flex justify-center'>
-                                        <Link to={'/login'} className='text-blue-500 mr-4'> Login</Link>
-                                        <span className='h-6 bg-blue-500 block' style={{ width: '1px' }}></span>
-                                        <Link to={'/signup'} className='text-blue-500 ml-4'> Signup</Link>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section >
-            </>
+                <div className='text-center flex justify-center'>
+                    <span className='text-blue-500 mr-4 cursor-pointer' onClick={() => dispatch(changeModal({ data: 'login' }))}>  Login</span>
+                    <span className='h-6 bg-blue-500 block' style={{ width: '1px' }}></span>
+                    <span className='text-blue-500 ml-4 cursor-pointer' onClick={() => dispatch(changeModal({ data: 'signup' }))}> Signup</span>
+                </div>
+            </form>
         </>
     )
 }

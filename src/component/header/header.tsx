@@ -1,12 +1,14 @@
-import { Link, useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "../button";
 import "./styles.scss"; // Import css modules stylesheet as styles
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../custome-hooks/redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import cn from "classnames";
 
 const Header = () => {
   const { isLoggedIn } = useAppSelector((state) => state.user);
+  const [activeNav, setActiveNav] = useState('')
   console.log(isLoggedIn);
   const location = useLocation();
   const fragment = location.hash;
@@ -54,18 +56,23 @@ const Header = () => {
         header.classList.toggle("menu_Height");
       });
     }
+    return () => {
+      setActiveNav('')
+    }
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      const sc = window.scrollY; // Replace scrollTop with scrollY in TypeScript
-      if (sc > 100) {
-        document.querySelector("#header")?.classList.add("sticky");
-      } else {
-        document.querySelector("#header")?.classList.remove("sticky");
-      }
+  const handleClickOnNavoption = (targetID: string) => {
+    const targetElement = document.querySelector(`#${targetID}`) as HTMLElement;
+    const offset = 75; // Adjust the offset value as needed
+    const targetPosition = targetElement.offsetTop - offset;
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth',
     });
-  }, []);
+    setActiveNav(targetID)
+  }
+
+
 
   return (
     <>
@@ -109,27 +116,27 @@ const Header = () => {
                 {menuList?.map((item, i) => {
                   return (
                     <li className="py-2 px-4 md:py-3" key={i}>
-                      <NavLink
-                        className="inline_Block py-0  no-underline lg:me-2 text-sm"
-                        to={`#${item.id}`}
+                      <span
+                        className={cn("inline_Block py-0  no-underline lg:me-2 text-sm text-white", activeNav === item.id && 'nav_Active')}
+                        onClick={() => handleClickOnNavoption(item.id)}
                       >
                         {item?.title}
-                      </NavLink>
+                      </span>
                     </li>
                   );
                 })}
-                <div
+                {!isLoggedIn && <div
                   className="h-12 bg-white hidden md:inline"
                   style={{ width: "1px" }}
-                ></div>
+                ></div>}
                 {!isLoggedIn && (
                   <div className="flex flex-col justify-center md:flex-row">
-                    <Link to="/login">
+                    <Link to="/">
                       <Button className="rounded-xl ml-3 mr-4 text-white mb-4 md:mb-0 text-xs">
                         Log In
                       </Button>
                     </Link>
-                    <Link to="/signup">
+                    <Link to="/">
                       <Button className="rounded-xl text-white">Sign Up</Button>
                     </Link>
                   </div>

@@ -15,6 +15,7 @@
 #check {
   display: none;
 }
+
 ul {
   li {
     a {
@@ -24,39 +25,48 @@ ul {
       line-height: 1.625rem;
     }
   }
+
   position: relative;
 }
-  // li {
-  //   &::after {
-  //     content: "";
-  //     position: absolute;
-  //     right: 33.5%;
-  //     top: -13%;
-  //     width: 0.063rem;
-  //     height: 3.875rem;
-  //     background-color: white;
-  //   }
-  //   @media (max-width: 1299px) {
-  //     &::after {
-  //       right: 29.5%;
-  //     }
-  //   }
-  //   @media (max-width: 1299px) {
-  //     &::after {
-  //       content: none;
-  //     }
-  //   }
-  // }
+
+// li {
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     right: 33.5%;
+//     top: -13%;
+//     width: 0.063rem;
+//     height: 3.875rem;
+//     background-color: white;
+//   }
+//   @media (max-width: 1299px) {
+//     &::after {
+//       right: 29.5%;
+//     }
+//   }
+//   @media (max-width: 1299px) {
+//     &::after {
+//       content: none;
+//     }
+//   }
+// }
 .inline_Block {
   &:hover {
     border-bottom: 0.063rem solid white;
     transition: all 0.6s ease-in-out;
   }
 }
+
+.nav_Active {
+  border-bottom: 0.063rem solid white;
+  transition: all 0.6s ease-in-out;
+}
+
 i.fa-solid.fa-bars {
   color: white;
   font-size: 1.875rem;
 }
+
 @media (max-width: 367px) {
   i.fa-solid.fa-bars {
     font-size: 2.188rem;
