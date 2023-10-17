@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { initializeUser } from "../../store/slices/user/userSlice";
 import subscriptionData from "./components/subscription-plan/data";
 import SubscriptionPlan from "./components/subscription-plan";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
   const { isLoggedIn } = useAppSelector((state) => state.user);
@@ -17,7 +18,7 @@ function LandingPage() {
     password: "",
   });
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields((prev) => ({ ...prev, [name]: value }));
@@ -78,9 +79,15 @@ function LandingPage() {
                       </h3>
                       <div className="login_signup flex">
                         <Button className="primaryBtn flex-1">Login</Button>
-                        <Button className="signup_btn flex-1">
+                        {/* <Button className="signup_btn flex-1">
                           <Link to="/signup">Sign Up</Link>
-                        </Button>
+                        </Button> */}
+                        <button
+                          className="signup_btn flex-1"
+                          onClick={() => navigate("/signup")}
+                        >
+                          Sign Up
+                        </button>
                       </div>
                       <div className="input_text mt-5">
                         <div className="e_mail">
