@@ -141,7 +141,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <section className="bg-white py-6 md:py-10 lg:py-14">
+      <section id="backtesting" className="bg-white py-6 md:py-10 lg:py-14">
         <div className="container mx-auto sm:px-4">
           <div className="text-2xl font-semibold relative mb-10 md:mb-16">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
@@ -150,7 +150,7 @@ function LandingPage() {
             <div className="absolute h-3 w-3/12 bg-blue-500 rounded-full mb-16 mt-2 left-1/2 transform -translate-x-1/2 shadow-md backdrop-blur-md"></div>
           </div>
           <div className="text-center relative">
-            <p className="text-base md:text-lg lg:text-xl mt-10">
+            {/* <p className="text-base md:text-lg lg:text-xl mt-10"> */}
               <h5 className="text-base md:text-lg lg:text-xl mb-4">
                 Backtesting lets you look at your strategies on historical data
                 to decide how well it would have worked within the past. In case
@@ -183,11 +183,11 @@ function LandingPage() {
                 event that your strategies are reasonable and possibly
                 effective.
               </h5>
-            </p>
+            {/* </p> */}
           </div>
         </div>
       </section>
-      <section className="bg-white py-6 md:py-10 lg:py-14">
+      <section id="Features" className="bg-white py-6 md:py-10 lg:py-14">
         <div className="container mx-auto">
           <div className="relative">
             <div className="text-2xl font-semibold relative mb-10 md:mb-16">
@@ -237,7 +237,7 @@ function LandingPage() {
           </div>
         </div>
       </section>
-      <section className="bg-white py-6 md:py-10 lg:py-14">
+      <section id="subscription" className="bg-white py-6 md:py-10 lg:py-14">
         <div className="container mx-auto">
           <div className="text-2xl font-semibold relative mb-10 md:mb-16">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
@@ -261,7 +261,7 @@ function LandingPage() {
           </div>
         </div>
       </section>
-      <section className="bg-white py-6 md:py-10 lg:py-14">
+      <section id="contactus" className="bg-white py-6 md:py-10 lg:py-14">
         <div className="container mx-auto">
           <div className="relative">
             <div className="text-2xl font-semibold relative mb-10 md:mb-16">
