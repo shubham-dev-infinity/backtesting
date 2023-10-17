@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import { Button } from "../button";
 import "./styles.scss"; // Import css modules stylesheet as styles
 import { NavLink } from "react-router-dom";
@@ -8,24 +8,41 @@ import { useEffect } from "react";
 const Header = () => {
   const { isLoggedIn } = useAppSelector((state) => state.user);
   console.log(isLoggedIn);
+  const location = useLocation();
+  const fragment = location.hash;
+
   const menuList = [
     {
+      id: "backtesting",
       menu_link: "/",
       title: "About Backtesting",
     },
     {
+      id: "Features",
       menu_link: "/features",
       title: "Features",
     },
     {
+      id: "subscription",
       menu_link: "/plan",
       title: "Subscription Plan",
     },
     {
+      id: "contactus",
       menu_link: "/contact-us",
       title: "Contact Us",
     },
   ];
+
+  const id = fragment.substring(1); // This will remove the '#' symbol
+
+  useEffect(() => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [id]);
+
   useEffect(() => {
     const button: HTMLElement | null = document.querySelector("#menu-button");
     const menu: HTMLElement | null = document.querySelector("#menu");
@@ -89,12 +106,12 @@ const Header = () => {
               lg:justify-between 
               lg:pt-0 text-center"
               >
-                {menuList?.map((item) => {
+                {menuList?.map((item, i) => {
                   return (
-                    <li className="py-2 px-4 md:py-3">
+                    <li className="py-2 px-4 md:py-3" key={i}>
                       <NavLink
                         className="inline_Block py-0  no-underline lg:me-2 text-sm"
-                        to={item?.menu_link}
+                        to={`#${item.id}`}
                       >
                         {item?.title}
                       </NavLink>
