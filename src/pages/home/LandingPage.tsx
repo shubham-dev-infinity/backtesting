@@ -141,16 +141,17 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <section id="backtesting" className="bg-white py-6 md:py-10 lg:py-14">
-        <div className="container mx-auto sm:px-4">
-          <div className="text-2xl font-semibold relative mb-10 md:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
-              About Backtesting
-            </h2>
-            <div className="absolute h-3 w-3/12 bg-blue-500 rounded-full mb-16 mt-2 left-1/2 transform -translate-x-1/2 shadow-md backdrop-blur-md"></div>
-          </div>
-          <div className="text-center relative">
-            {/* <p className="text-base md:text-lg lg:text-xl mt-10"> */}
+      <section id="backtesting" className="bg-white">
+        <div className="py-6 md:py-10 lg:py-14">
+          <div className="container mx-auto sm:px-4">
+            <div className="text-2xl font-semibold relative mb-10 md:mb-16">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
+                About Backtesting
+              </h2>
+              <div className="absolute h-3 w-3/12 bg-blue-500 rounded-full mb-16 mt-2 left-1/2 transform -translate-x-1/2 shadow-md backdrop-blur-md"></div>
+            </div>
+            <div className="text-center relative">
+              {/* <p className="text-base md:text-lg lg:text-xl mt-10"> */}
               <h5 className="text-base md:text-lg lg:text-xl mb-4">
                 Backtesting lets you look at your strategies on historical data
                 to decide how well it would have worked within the past. In case
@@ -183,85 +184,93 @@ function LandingPage() {
                 event that your strategies are reasonable and possibly
                 effective.
               </h5>
-            {/* </p> */}
+              {/* </p> */}
+            </div>
           </div>
         </div>
       </section>
-      <section id="Features" className="bg-white py-6 md:py-10 lg:py-14">
-        <div className="container mx-auto">
-          <div className="relative">
+      <section id="Features" className="bg-white">
+        <div className=" py-6 md:py-10 lg:py-14">
+          <div className="container mx-auto">
+            <div className="relative">
+              <div className="text-2xl font-semibold relative mb-10 md:mb-16">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
+                  Features
+                </h2>
+                <div className="absolute h-3 w-4/12 bg-blue-500 rounded-full mb-16 mt-2 left-1/2 transform -translate-x-1/2 shadow-md backdrop-blur-md"></div>
+              </div>
+              <div className="md:flex lg:flex grid gap-x-8 mt-10">
+                <div className="md:w-1/2 lg:w-1/2 flex items-center">
+                  <img
+                    src="/assets/img/feature1.png"
+                    alt="star"
+                    className="w-full feature_Img"
+                  />
+                </div>
+                <div className="md:w-1/2 lg:w-1/2 flex items-center mt-6 md:mt-0 lg:mt-0 px-8">
+                  <h5 className="text-base md:text-lg lg:text-xl mb-4">
+                    The app offers a vast collection of safety talks tailored
+                    specifically for the construction and marine industries.
+                    Workers can easily search and browse through the library to
+                    find relevant topics and materials for their safety
+                    briefings. This app provides a comprehensive solution for
+                    promoting safety awareness and compliance.
+                  </h5>
+                </div>
+              </div>
+              <div className="md:flex md:flex-row lg:flex mt-6 md:mt-0 lg:mt-0 flex flex-col-reverse">
+                <div className="md:w-1/2 lg:w-1/2 flex items-center px-8">
+                  <h5 className="text-base md:text-lg lg:text-xl mb-4">
+                    The app offers a vast collection of safety talks tailored
+                    specifically for the construction and marine industries.
+                    Workers can easily search and browse through the library to
+                    find relevant topics and materials for their safety
+                    briefings. This app provides a comprehensive solution for
+                    promoting safety awareness and compliance.
+                  </h5>
+                </div>
+                <div className="md:w-1/2 lg:w-1/2 flex items-center">
+                  <img
+                    src="/assets/img/feature2.png"
+                    alt="star"
+                    className="w-full feature_Img"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="subscription" className="bg-white ">
+        <div className="py-6 md:py-10 lg:py-14">
+          <div className="container mx-auto">
             <div className="text-2xl font-semibold relative mb-10 md:mb-16">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
-                Features
+                Subscription Plans
               </h2>
               <div className="absolute h-3 w-4/12 bg-blue-500 rounded-full mb-16 mt-2 left-1/2 transform -translate-x-1/2 shadow-md backdrop-blur-md"></div>
             </div>
-            <div className="md:flex lg:flex grid gap-x-8 mt-10">
-              <div className="md:w-1/2 lg:w-1/2 flex items-center">
-                <img
-                  src="/assets/img/feature1.png"
-                  alt="star"
-                  className="w-full feature_Img"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-8">
+              {subscriptionData.map((sub, index) => (
+                <SubscriptionPlan
+                  key={index}
+                  index={index}
+                  activeIndex={activeSub}
+                  duration={sub.duration}
+                  features={sub.features}
+                  price={sub.price}
+                  priceLabel={sub.priceLabel}
+                  selectSub={setActiveSub}
                 />
-              </div>
-              <div className="md:w-1/2 lg:w-1/2 flex items-center mt-6 md:mt-0 lg:mt-0 px-8">
-                <h5 className="text-base md:text-lg lg:text-xl mb-4">
-                  The app offers a vast collection of safety talks tailored
-                  specifically for the construction and marine industries.
-                  Workers can easily search and browse through the library to
-                  find relevant topics and materials for their safety briefings.
-                  This app provides a comprehensive solution for promoting
-                  safety awareness and compliance.
-                </h5>
-              </div>
+              ))}
             </div>
-            <div className="md:flex md:flex-row lg:flex mt-6 md:mt-0 lg:mt-0 flex flex-col-reverse">
-              <div className="md:w-1/2 lg:w-1/2 flex items-center px-8">
-                <h5 className="text-base md:text-lg lg:text-xl mb-4">
-                  The app offers a vast collection of safety talks tailored
-                  specifically for the construction and marine industries.
-                  Workers can easily search and browse through the library to
-                  find relevant topics and materials for their safety briefings.
-                  This app provides a comprehensive solution for promoting
-                  safety awareness and compliance.
-                </h5>
-              </div>
-              <div className="md:w-1/2 lg:w-1/2 flex items-center">
-                <img
-                  src="/assets/img/feature2.png"
-                  alt="star"
-                  className="w-full feature_Img"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="subscription" className="bg-white py-6 md:py-10 lg:py-14">
-        <div className="container mx-auto">
-          <div className="text-2xl font-semibold relative mb-10 md:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">
-              Subscription Plans
-            </h2>
-            <div className="absolute h-3 w-4/12 bg-blue-500 rounded-full mb-16 mt-2 left-1/2 transform -translate-x-1/2 shadow-md backdrop-blur-md"></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-8">
-            {subscriptionData.map((sub, index) => (
-              <SubscriptionPlan
-                key={index}
-                index={index}
-                activeIndex={activeSub}
-                duration={sub.duration}
-                features={sub.features}
-                price={sub.price}
-                priceLabel={sub.priceLabel}
-                selectSub={setActiveSub}
-              />
-            ))}
           </div>
         </div>
       </section>
       <section id="contactus" className="bg-white py-6 md:py-10 lg:py-14">
+        <div>
+          
+        </div>
         <div className="container mx-auto">
           <div className="relative">
             <div className="text-2xl font-semibold relative mb-10 md:mb-16">
