@@ -2,16 +2,17 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "../button";
 import "./styles.scss"; // Import css modules stylesheet as styles
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../custome-hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../custome-hooks/redux";
 import { useEffect, useState } from "react";
 import cn from "classnames";
+import { changeModal } from "../../store/slices/modal/modalSlice";
 
 const Header = () => {
   const { isLoggedIn } = useAppSelector((state) => state.user);
   const [activeNav, setActiveNav] = useState('')
-  console.log(isLoggedIn);
   const location = useLocation();
   const fragment = location.hash;
+  const dispatch = useAppDispatch();
 
   const menuList = [
     {
@@ -131,21 +132,17 @@ const Header = () => {
                 ></div>}
                 {!isLoggedIn && (
                   <div className="flex flex-col justify-center md:flex-row">
-                    <Link to="/">
-                      <Button className="rounded-xl ml-3 mr-4 text-white mb-4 md:mb-0 text-xs">
-                        Log In
-                      </Button>
-                    </Link>
-                    <Link to="/">
-                      <Button className="rounded-xl text-white">Sign Up</Button>
-                    </Link>
+                    <Button className="rounded-xl ml-3 mr-4 text-white mb-4 md:mb-0 text-xs" onClick={() => dispatch(changeModal({ data: 'login' }))}>
+                      Log In
+                    </Button>
+                    <Button className="rounded-xl text-white" onClick={() => dispatch(changeModal({ data: 'signup' }))}>Sign Up</Button>
                   </div>
                 )}
               </ul>
             </div>
           </nav>
-        </div>
-      </header>
+        </div >
+      </header >
     </>
   );
 };

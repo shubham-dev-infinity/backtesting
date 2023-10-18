@@ -187,7 +187,7 @@ const SignUp = () => {
             {isSubmitting ? (
               <Loader />
             ) : recievedOTP ? (
-              "Varify OTP"
+              "Verify OTP"
             ) : (
               "Get OTP"
             )}
