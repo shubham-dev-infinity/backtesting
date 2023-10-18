@@ -132,22 +132,26 @@ const Header = () => {
                 ></div>}
                 {!isLoggedIn && (
                   <div className="flex flex-col justify-center md:flex-row">
-                    <Button className="rounded-xl ml-3 mr-4 text-white mb-4 md:mb-0 text-xs" onClick={() => {
-                      dispatch(changeModal({ data: 'login' }))
-                      window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                      });
-                    }}>
-                      Log In
-                    </Button>
-                    <Button className="rounded-xl text-white" onClick={() => {
-                      dispatch(changeModal({ data: 'signup' }))
-                      window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                      });
-                    }}>Sign Up</Button>
+                    <p>
+                      <Button className="rounded-xl ml-3 mr-4 text-white mb-4 md:mb-0 text-xs" onClick={() => {
+                        dispatch(changeModal({ data: 'login' }))
+                        window.scrollTo({
+                          top: 0,
+                          behavior: 'smooth'
+                        });
+                      }}>
+                        Log In
+                      </Button>
+                    </p>
+                    <p>
+                      <Button className="rounded-xl text-white" onClick={() => {
+                        dispatch(changeModal({ data: 'signup' }))
+                        window.scrollTo({
+                          top: 0,
+                          behavior: 'smooth'
+                        });
+                      }}>Sign Up</Button>
+                    </p>
                   </div>
                 )}
               </ul>
