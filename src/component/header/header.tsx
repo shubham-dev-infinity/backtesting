@@ -116,7 +116,7 @@ const Header = () => {
               >
                 {menuList?.map((item, i) => {
                   return (
-                    <li className="py-2 px-4 md:py-3" key={i}>
+                    <li className="py-2 px-4 md:py-3 cursor-pointer" key={i}>
                       <span
                         className={cn("inline_Block py-0  no-underline lg:me-2 text-sm text-white", activeNav === item.id && 'nav_Active')}
                         onClick={() => handleClickOnNavoption(item.id)}
@@ -132,10 +132,22 @@ const Header = () => {
                 ></div>}
                 {!isLoggedIn && (
                   <div className="flex flex-col justify-center md:flex-row">
-                    <Button className="rounded-xl ml-3 mr-4 text-white mb-4 md:mb-0 text-xs" onClick={() => dispatch(changeModal({ data: 'login' }))}>
+                    <Button className="rounded-xl ml-3 mr-4 text-white mb-4 md:mb-0 text-xs" onClick={() => {
+                      dispatch(changeModal({ data: 'login' }))
+                      window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                      });
+                    }}>
                       Log In
                     </Button>
-                    <Button className="rounded-xl text-white" onClick={() => dispatch(changeModal({ data: 'signup' }))}>Sign Up</Button>
+                    <Button className="rounded-xl text-white" onClick={() => {
+                      dispatch(changeModal({ data: 'signup' }))
+                      window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                      });
+                    }}>Sign Up</Button>
                   </div>
                 )}
               </ul>

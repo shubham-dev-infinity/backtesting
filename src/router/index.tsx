@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import LandingPage from '../pages/home/LandingPage';
+import LandingPage from '../pages/home';
 import LogIn from '../pages/login';
 import SignUp from '../pages/signup';
 import Forgotpassword from '../pages/forgot-password';

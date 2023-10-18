@@ -1,4 +1,4 @@
-import "./home.scss";
+import "./styles.scss";
 import { Button } from "../../component/button";
 import { useAppDispatch, useAppSelector } from "../../custome-hooks/redux";
 import { useState } from "react";
