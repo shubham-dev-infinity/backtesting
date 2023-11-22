@@ -7,7 +7,7 @@ export default async function post<T>(
     source?: CancelTokenSource
 ): Promise<T> {
     try {
-        const response = await axios.post<T>(`http://3.7.63.34/api/dev/${endpoint}`, JSON.stringify(data), {
+        const response = await axios.post<T>(`https://api.exalgo.tech/api/dev/${endpoint}`, JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json',
             },

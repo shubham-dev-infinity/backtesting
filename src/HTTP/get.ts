@@ -6,7 +6,7 @@ export default async function get<T>(
 ): Promise<T | null> {
     const config = {
         method: 'get',
-        url: `${process.env.REACT_NODE_URL}/${endpoint}`,
+        url: `https://api.exalgo.tech/api/dev/${endpoint}`,
         cancelToken: source?.token,
     };
 
