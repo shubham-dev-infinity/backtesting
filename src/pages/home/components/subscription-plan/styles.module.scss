@@ -1,0 +1,40 @@
+.subscription {
+    border: 1px solid #0000004D;
+    border-radius: 1.4rem;
+    box-shadow: 0px 0px 4px 1px #00000040;
+
+}
+
+.active_Subscription {
+    border-color: var(--text-blue-primary);
+}
+
+.sub_Duration {
+    border-bottom: 1px solid #0000004D;
+    border-top-left-radius: 1.4rem;
+    border-top-right-radius: 1.4rem;
+}
+
+.active_Sub_Duration {
+    background-color: var(--bg-blue-primary);
+
+    h2 {
+        color: white !important;
+    }
+}
+
+.true_Icon {
+    background: #F4EBFF;
+    padding: .225rem;
+    border-radius: 50%;
+}
+
+.get_Start_Btn {
+    border-radius: .3rem;
+    color: var(--text-blue-primary) !important;
+}
+
+.active_Get_Start_Btn {
+    background-color: var(--bg-blue-primary);
+    color: white !important;
+}
